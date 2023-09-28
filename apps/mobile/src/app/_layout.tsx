@@ -6,6 +6,7 @@ import * as SecureStore from "expo-secure-store";
 import { StatusBar } from "expo-status-bar";
 import { ClerkProvider } from "@clerk/clerk-expo";
 
+import { TRPCProvider } from "~/lib/api";
 import { AuthProvider } from "~/lib/authProvider";
 
 export {
@@ -36,40 +37,42 @@ export default function RootLayout() {
       tokenCache={tokenCache}
       publishableKey={process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY ?? ""}
     >
-      <AuthProvider>
-        <SafeAreaProvider>
-          <StatusBar style="dark" />
-          <Stack
-            screenOptions={{
-              headerShown: false,
-              contentStyle: {
-                backgroundColor: "#002124",
-              },
-            }}
-          >
-            <Stack.Screen
-              name="transfer"
-              options={{
-                headerShown: true,
-                headerTitle: "Transfer money",
+      <TRPCProvider>
+        <AuthProvider>
+          <SafeAreaProvider>
+            <StatusBar style="dark" />
+            <Stack
+              screenOptions={{
+                headerShown: false,
+                contentStyle: {
+                  backgroundColor: "#002124",
+                },
               }}
-            />
-            <Stack.Screen name="(home)" />
-            <Stack.Screen
-              name="(auth)/onboarding"
-              options={{
-                animation: "none",
-              }}
-            />
-            <Stack.Screen
-              name="(auth)/sign-in"
-              options={{
-                animation: "none",
-              }}
-            />
-          </Stack>
-        </SafeAreaProvider>
-      </AuthProvider>
+            >
+              <Stack.Screen
+                name="transfer"
+                options={{
+                  headerShown: true,
+                  headerTitle: "Transfer money",
+                }}
+              />
+              <Stack.Screen name="(home)" />
+              <Stack.Screen
+                name="(auth)/onboarding"
+                options={{
+                  animation: "none",
+                }}
+              />
+              <Stack.Screen
+                name="(auth)/sign-in"
+                options={{
+                  animation: "none",
+                }}
+              />
+            </Stack>
+          </SafeAreaProvider>
+        </AuthProvider>
+      </TRPCProvider>
     </ClerkProvider>
   );
 }

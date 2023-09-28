@@ -7,7 +7,7 @@ const defineConfig: ExpoConfig = {
   version: "1.0.0",
   orientation: "portrait",
   icon: "./assets/icon.png",
-  owner: "czysty", // comment
+  // owner: "czysty", // comment
   userInterfaceStyle: "automatic",
   splash: {
     image: "./assets/icon.png",
@@ -28,11 +28,11 @@ const defineConfig: ExpoConfig = {
       backgroundColor: "#1F104A",
     },
   },
-  extra: {
-    eas: {
-      projectId: "677df07c-8718-4abb-8a30-d86f985f47fb", // comment
-    },
-  },
+  // extra: {
+  //   eas: {
+  //     projectId: "677df07c-8718-4abb-8a30-d86f985f47fb", // comment
+  //   },
+  // },
   experiments: {
     tsconfigPaths: true,
     typedRoutes: true,

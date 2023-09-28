@@ -2,6 +2,7 @@ import "~/styles/globals.css";
 
 import type { Metadata } from "next";
 import { Roboto_Mono } from "next/font/google";
+import { ClerkProvider } from "@clerk/nextjs";
 
 import { ThemeProvider } from "~/components/ThemeProvider";
 
@@ -24,16 +25,18 @@ export const metadata: Metadata = {
 
 export default function Layout(props: { children: React.ReactNode }) {
   return (
-    <html
-      lang="en"
-      className={`${roboto_mono.variable} font-mono`}
-      suppressHydrationWarning
-    >
-      <body suppressHydrationWarning={true}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          {props.children}
-        </ThemeProvider>
-      </body>
-    </html>
+    <ClerkProvider>
+      <html
+        lang="en"
+        className={`${roboto_mono.variable} font-mono`}
+        suppressHydrationWarning
+      >
+        <body suppressHydrationWarning={true}>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            {props.children}
+          </ThemeProvider>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
